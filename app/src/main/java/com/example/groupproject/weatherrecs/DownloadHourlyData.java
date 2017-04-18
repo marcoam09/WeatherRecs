@@ -1,22 +1,19 @@
 package com.example.groupproject.weatherrecs;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.view.inputmethod.InputConnection;
-import org.json.JSONArray;
-import org.json.JSONException;
+
 import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
- * Created by Nichole on 4/16/2017.
+ * Created by Marco on 4/17/2017.
  */
 
-public class DownloadAPIData extends AsyncTask<String, Void, String> {
+public class DownloadHourlyData extends AsyncTask<String, Void, String> {
 
 
     //This connects to the Wunderground API's URL to grab current weather data upon opening the app.
@@ -64,6 +61,8 @@ public class DownloadAPIData extends AsyncTask<String, Void, String> {
             JSONObject cityData = weatherData.getJSONObject("display_location");
 
 
+
+
             //fetches string data from JSON
             String cityName = cityData.getString("city");
             MainActivity.cityTextView.append(cityName);
@@ -74,18 +73,15 @@ public class DownloadAPIData extends AsyncTask<String, Void, String> {
             MainActivity.temperatureTextView.append(feelsLike);
 
 
-
-            /*String tempF = jsonObject.getString("feelslike_f");
-            String UV = jsonObject.getString("UV");*/
-
-            //fetches current weather icon
-            String iconURL = weatherData.getString("icon_url");
-            URL url = new URL(iconURL);
-            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            int meanRain = 0;
+            //Grab 6 hours worth of POP (percentage of precipitation)
+            int givenHourOfRain = 0;
 
 
-            //Applies parsed data from JSON to UI elements
-            MainActivity.iconImageView.setImageBitmap(bmp);
+            if (meanRain > 50 || givenHourOfRain > 70){
+                //Reccommend Umbrella/Rainboots
+            }
+
 
 
         } catch (Exception e) {

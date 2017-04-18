@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
 
         cityTextView = (TextView) findViewById(R.id.cityTextView);
         temperatureTextView = (TextView) findViewById(R.id.temperatureTextView);
+        iconImageView = (ImageView) findViewById(R.id.iconImageView);
 
 
         /**
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity{
         DownloadAPIData task = new DownloadAPIData();
         task.execute("http://api.wunderground.com/api/43f3a903f5e333e9/conditions/q/LA/Baton_Rouge.json");
 
+        //DownloadHourlyData hourlyTask = new DownloadHourlyData();
+        //hourlyTask.execute("http://api.wunderground.com/api/43f3a903f5e333e9/hourly/q/LA/Baton_Rouge.json");
 
     }
 
